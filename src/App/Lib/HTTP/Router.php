@@ -113,8 +113,10 @@ class Router
         } catch( \Exception $e) {
             try {
                 $errorCode = (int) $e->getCode();
-            } catch (\TypeError) {
+                echo "$e" . "HERE";
+            } catch (\TypeError $type_err) {
                 $errorCode = 404;
+                echo "$type_err" . "HERE $type_err";
             }
             return self::errorNotFound(statusCode: $errorCode);
         }
@@ -207,7 +209,6 @@ class Router
     public static function errorNotFound(int | string | null $statusCode = 404)
     {
         http_response_code($statusCode);
-        echo "$statusCode" . "HERE";
         return render("errors/404.php", ["error_code" => $statusCode]);
     }
 
