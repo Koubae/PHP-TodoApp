@@ -216,7 +216,8 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 ";
         try {
             $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
-            $this->cr->exec($query);
+            $stmt = $this->cr->prepare($query);
+            $stmt->execute();
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
