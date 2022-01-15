@@ -216,9 +216,9 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 ";
 
         try {
+            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
-            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
             $stmt = $this->cr->prepare($query);
             $stmt->execute();
             echo "dfsfd";
