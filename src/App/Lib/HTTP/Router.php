@@ -102,9 +102,6 @@ class Router
     {
         try {
             $logged = self::logged();
-            echo var_dump($logged); echo  '<br/>';
-            echo var_dump($_SERVER['REQUEST_URI'] ); echo  '<br/>';
-            exit;
             $userLogginAttempt = $_SERVER['REQUEST_URI'] === '/login?submit' && $method === 'POST';
             $userSignUpAttempt = $_SERVER['REQUEST_URI'] === '/signup?submit' && $method === 'POST';
 
