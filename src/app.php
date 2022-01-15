@@ -10,21 +10,25 @@ require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
 // Set Headers
 header('Content-Type: text/html; charset=utf-8');
 
+
+/* @var Lib\App $app Application */
+/// Register App Router instance
+$router = Router::getClass();
+$app->router = $router;
+/// Register database cursor to the router for easier faster access
+Router::$cr = $app->cr;
+Router::$db = $app->database;
+Router::authSet($app->auth());
+
+$path = realpath(dirname(__DIR__)) .  '/resources/routes/routes.php';
+
+
+
 echo "HCAFD";
 echo "HCAFD";
 echo "HCAFD";
 exit;
 
-///* @var Lib\App $app Application */
-///// Register App Router instance
-//$router = Router::getClass();
-//$app->router = $router;
-///// Register database cursor to the router for easier faster access
-//Router::$cr = $app->cr;
-//Router::$db = $app->database;
-//Router::authSet($app->auth());
-//
-//$path = $app->config->getPublic('resources') . '/routes/routes.php';
-//require $path;
+require $path;
 
 
