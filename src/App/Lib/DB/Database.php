@@ -105,7 +105,7 @@ final class Database
 
     UNIQUE (name, user_id)
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+) ENGINE=InnoDB";
 
         $task = "CREATE TABLE IF NOT EXISTS `task` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -129,7 +129,7 @@ final class Database
     FOREIGN KEY (project_id) REFERENCES `project`(id) ON DELETE CASCADE,
     FOREIGN KEY (project_default_id) REFERENCES `project`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci";
+) ENGINE=InnoDB";
 
         $todo = "
 CREATE TABLE IF NOT EXISTS `todo_list` (
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
     UNIQUE unique_user_id_task_id_name (user_id, task_id, name),
     FOREIGN KEY (task_id) REFERENCES `task`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci";
+) ENGINE=InnoDB";
 
    $users = "CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
     `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+) ENGINE=InnoDB ";
 
 $users_confirmations = "CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -177,7 +177,7 @@ $users_confirmations = "CREATE TABLE IF NOT EXISTS `users_confirmations` (
     UNIQUE KEY `selector` (`selector`),
     KEY `email_expires` (`email`,`expires`),
     KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+) ENGINE=InnoDB ";
 
 $user_rem = "CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -188,7 +188,7 @@ $user_rem = "CREATE TABLE IF NOT EXISTS `users_remembered` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
   KEY `user` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+) ENGINE=InnoDB ";
 
 $users_resets = "CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -199,7 +199,7 @@ $users_resets = "CREATE TABLE IF NOT EXISTS `users_resets` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
     KEY `user_expires` (`user`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+) ENGINE=InnoDB ";
 
 $t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
     `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -208,7 +208,7 @@ $t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
     `expires_at` int(10) unsigned NOT NULL,
     PRIMARY KEY (`bucket`),
     KEY `expires_at` (`expires_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+) ENGINE=InnoDB";
 
 $set = "
 /*!40101 SET NAMES utf8 */;
