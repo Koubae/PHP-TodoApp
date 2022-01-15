@@ -5,7 +5,8 @@ require_once LIB_PATH . "/HTTP/template_engine.php";  // fixme: shouldn't this b
 require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
 
 use App\Lib\HTTP\{Router};
-
+echo "HCAFD";
+exit;
 // Set Headers
 header('Content-Type: text/html; charset=utf-8');
 
@@ -17,10 +18,8 @@ $app->router = $router;
 Router::$cr = $app->cr;
 Router::$db = $app->database;
 Router::authSet($app->auth());
-echo "HCAFD";
-exit;
-$path = $app->config->getPublic('resources') . '/routes/routes.php';
 
+$path = $app->config->getPublic('resources') . '/routes/routes.php';
 require $path;
 
 
