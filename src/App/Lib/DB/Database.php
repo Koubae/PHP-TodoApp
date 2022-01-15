@@ -47,10 +47,6 @@ final class Database
         }
         $conn->cr = $cr;
         $conn->_init_db($db_dump_file);
-        echo "HELLOOOO <br/>";
-        echo var_dump($conn);
-        exit;
-
         return $conn;
     }
 
