@@ -388,9 +388,9 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
             $this->cr->query($user_rem);
             $this->cr->query($users_resets);
             $this->cr->query($t);
-            $this->cr->query($todo);
-            $this->cr->query($task);
             $this->cr->query($project);
+            $this->cr->query($task);
+            $this->cr->query($todo);
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
