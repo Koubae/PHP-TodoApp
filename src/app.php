@@ -19,8 +19,17 @@ Router::$db = $app->database;
 Router::authSet($app->auth());
 $test = $app->config->getPublic('resources')  . '/routes/routes.php';
 echo "HELLOOOO <br/>";
+echo "HELLOOOO <br/>";
+echo "HELLOOOO <br/>";
+echo "HELLOOOO <br/>";
+echo ROOT_DIR ;
+echo $test;
+echo $test;
+echo $test;
+echo $test;
 echo "$test";
 exit;
 //require ;
+
 
 
