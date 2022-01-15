@@ -297,18 +297,8 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
 --  ================= < USER TABLES > =================
 CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `email` varchar(249)  NOT NULL,
-    `password` varchar(255)  NOT NULL,
-    `username` varchar(100)  DEFAULT NULL,
-    `status` tinyint(2) unsigned NOT NULL DEFAULT '0',
-    `verified` tinyint(1) unsigned NOT NULL DEFAULT '0',
-    `resettable` tinyint(1) unsigned NOT NULL DEFAULT '1',
-    `roles_mask` int(10) unsigned NOT NULL DEFAULT '0',
-    `registered` int(10) unsigned NOT NULL,
-    `last_login` int(10) unsigned DEFAULT NULL,
-    `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `email` (`email`)
+    `email` varchar(10)  NOT NULL,
+
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS `users_confirmations` (
