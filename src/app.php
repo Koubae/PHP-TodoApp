@@ -1,19 +1,20 @@
 <?php declare(strict_types=1);
 
 
-//namespace App;
-//require_once LIB_PATH . "/HTTP/template_engine.php";  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
-$path = realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/template_engine.php';
-echo "HCAFD";
-echo $path;
-exit;
-//require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
-//
+namespace App;
+require_once realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/template_engine.php';  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
+require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
+
 //use App\Lib\HTTP\{Router};
-//
-//// Set Headers
-//header('Content-Type: text/html; charset=utf-8');
-//
+
+// Set Headers
+header('Content-Type: text/html; charset=utf-8');
+
+echo "HCAFD";
+echo "HCAFD";
+echo "HCAFD";
+exit;
+
 ///* @var Lib\App $app Application */
 ///// Register App Router instance
 //$router = Router::getClass();
