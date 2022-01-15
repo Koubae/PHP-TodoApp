@@ -95,7 +95,7 @@ final class Database
     description TEXT NULL,
     date_start DATE,
     date_end DATE,
-    state ENUM('draft', 'in_progress', 'done', 'discarded')  COLLATE utf8_unicode_ci DEFAULT NULL,
+    state ENUM('draft', 'in_progress', 'done', 'discarded')  DEFAULT NULL,
     is_system_project BOOL DEFAULT FALSE,
     sequence TINYINT UNSIGNED NOT NULL DEFAULT 10,
 
@@ -119,7 +119,7 @@ final class Database
     date_start DATE,
     date_end DATE,
     is_done BOOL,
-    state ENUM('draft', 'in_progress', 'done', 'discarded') COLLATE utf8_unicode_ci DEFAULT NULL,
+    state ENUM('draft', 'in_progress', 'done', 'discarded') DEFAULT NULL,
     sequence TINYINT UNSIGNED NOT NULL DEFAULT 10,
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES `users`(id) ON DELETE CASCADE,
@@ -169,9 +169,9 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
 $users_confirmations = "CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `user_id` int(10) unsigned NOT NULL,
-    `email` varchar(249) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `selector` varchar(16) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-    `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `email` varchar(249)  NOT NULL,
+    `selector` varchar(16) NOT NULL,
+    `token` varchar(255)  NOT NULL,
     `expires` int(10) unsigned NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
@@ -182,8 +182,8 @@ $users_confirmations = "CREATE TABLE IF NOT EXISTS `users_confirmations` (
 $user_rem = "CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL,
-  `selector` varchar(24) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-  `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `selector` varchar(24) NOT NULL,
+  `token` varchar(255)  NOT NULL,
   `expires` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
@@ -193,8 +193,8 @@ $user_rem = "CREATE TABLE IF NOT EXISTS `users_remembered` (
 $users_resets = "CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     `user` int(10) unsigned NOT NULL,
-    `selector` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-    `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `selector` varchar(20)  NOT NULL,
+    `token` varchar(255) NOT NULL,
     `expires` int(10) unsigned NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
@@ -202,7 +202,7 @@ $users_resets = "CREATE TABLE IF NOT EXISTS `users_resets` (
 ) ENGINE=InnoDB ";
 
 $t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
-    `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `bucket` varchar(44) NOT NULL,
     `tokens` float unsigned NOT NULL,
     `replenished_at` int(10) unsigned NOT NULL,
     `expires_at` int(10) unsigned NOT NULL,
@@ -384,13 +384,13 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
             $this->cr->query("use " . $this->db_name);
             $this->cr->query("TRUNCATE TABLE `users`");
             $this->cr->query($users);
-//            $this->cr->query($users_confirmations);
-//            $this->cr->query($user_rem);
-//            $this->cr->query($users_resets);
-//            $this->cr->query($t);
-//            $this->cr->query($todo);
-//            $this->cr->query($task);
-//            $this->cr->query($project);
+            $this->cr->query($users_confirmations);
+            $this->cr->query($user_rem);
+            $this->cr->query($users_resets);
+            $this->cr->query($t);
+            $this->cr->query($todo);
+            $this->cr->query($task);
+            $this->cr->query($project);
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
