@@ -80,6 +80,7 @@ final class Database
     {
 
         $this->cr->query("USE $this->db_name");
+        $this->cr->query("SELECT COUNT(*) FROM project LIMIT 1");
 
     }
     private function _create_db(string $db_dump_file): void
