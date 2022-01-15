@@ -152,8 +152,16 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
 
    $users = "CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `email` varchar(10)  NOT NULL,
-
+    `email` varchar(249) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `username` varchar(100) DEFAULT NULL,
+    `status` tinyint(2) unsigned NOT NULL DEFAULT '0',
+    `verified` tinyint(1) unsigned NOT NULL DEFAULT '0',
+    `resettable` tinyint(1) unsigned NOT NULL DEFAULT '1',
+    `roles_mask` int(10) unsigned NOT NULL DEFAULT '0',
+    `registered` int(10) unsigned NOT NULL,
+    `last_login` int(10) unsigned DEFAULT NULL,
+    `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB ";
@@ -374,6 +382,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 //            $this->cr->query($fullq);
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
+            $this->cr->query("TRUNCATE TABLE `users`");
             $this->cr->query($users);
 //            $this->cr->query($users_confirmations);
 //            $this->cr->query($user_rem);
