@@ -33,7 +33,7 @@ const CONFIG = [
         ],
         'public' => [
             'name' => 'TodoApp',
-            'url' => 'localhost',
+            'url' => 'cryptic-plains-98119.herokuapp.com',
 
         ],
     ],
@@ -81,7 +81,8 @@ const CONFIG = [
 ====================
 */
 // PUBLIC
-define("WEB_HOST" , 'http://' . CONFIG['main']['public']['url'] . ':8000');
+//define("WEB_HOST" , 'http://' . CONFIG['main']['public']['url'] . ':8000');
+define("WEB_HOST" , 'https://' . CONFIG['main']['public']['url']);
 define('ASSETS', CONFIG['paths']['public']['assets']);
 define('ASSETS_STYLE', ASSETS . '/style/');
 define('ASSETS_JS', ASSETS . '/js/');
