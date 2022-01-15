@@ -32,8 +32,6 @@ class App
         $this->logger::enableSystemLogs(request_log: true);
         $this->_bootDatabase();
         $this->auth = new \Delight\Auth\Auth($this->cr);
-        echo "HELLOOOO <br/>";
-        exit;
 
     }
 
