@@ -5,9 +5,11 @@ require realpath(dirname(__DIR__)) . '/src/App/Lib/Config.php';
 require realpath(dirname(__DIR__)) . '/src/App/Lib/Logger.php';
 require realpath(dirname(__DIR__)) . '/src/App/Lib/App.php';
 use App\Lib\{Config, Logger, App};
-echo "HELLOOOO <br/>";
-exit;
+
 $config = Config::getClass(); // pass the class in app and not the instance, learn how.
+echo "HELLOOOO <br/>";
+echo var_dump($config);
+exit;
 $config::initConfig();
 
 $logs = $config::getPrivate('logs');
