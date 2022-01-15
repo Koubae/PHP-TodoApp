@@ -30,10 +30,10 @@ class App
     private function _boot()
     {
         $this->logger::enableSystemLogs(request_log: true);
+        $this->_bootDatabase();
         echo "HELLOOOO <br/>";
         echo var_dump($this);
         exit;
-        $this->_bootDatabase();
         $this->auth = new \Delight\Auth\Auth($this->cr);
 
     }
