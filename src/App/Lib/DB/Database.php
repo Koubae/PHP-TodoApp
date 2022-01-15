@@ -391,29 +391,21 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
 
-//            $stmt = $this->cr->prepare($users);
-//            $stmt->execute();
+            $this->cr->query($users);
 //
-//            $stmt = $this->cr->prepare($users_confirmations);
-//            $stmt->execute();
+            $this->cr->query($users_confirmations);
+
+            $this->cr->query($user_rem);
 //
-//            $stmt = $this->cr->prepare($user_rem);
-//            $stmt->execute();
+            $this->cr->query($users_resets);
 //
-//            $stmt = $this->cr->prepare($users_resets);
-//            $stmt->execute();
-//
-//            $stmt = $this->cr->prepare($t);
-//            $stmt->execute();
-//
-//            $stmt = $this->cr->prepare($todo);
-//            $stmt->execute();
-//
-//            $stmt = $this->cr->prepare($task);
-//            $stmt->execute();
-//
-//            $stmt = $this->cr->prepare($project);
-//            $stmt->execute();
+            $this->cr->query($t);
+
+            $this->cr->query($todo);
+
+            $this->cr->query($task);
+
+            $this->cr->query($project);
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
