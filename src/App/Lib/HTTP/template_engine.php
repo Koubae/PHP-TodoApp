@@ -45,3 +45,4 @@ function render($contentFile, $variables = array())
 //    ob_end_flush();
     exit;
 }
+
