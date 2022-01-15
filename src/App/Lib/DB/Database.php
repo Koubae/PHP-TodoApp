@@ -86,16 +86,20 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
         $query = file_get_contents(__DIR__ . "/$db_dump_file");
-        echo "$db_dump_file";
-        exit;
-        $stmt = $this->cr->prepare($query);
-        $stmt->execute();
-        $stmt->closeCursor();// Safely consuming the SQL operation till end
-        if (!$stmt->rowCount()) {
-            // Make test query
-            $query = 'SELECT id, name, state from project';
+
+        try {
             $stmt = $this->cr->prepare($query);
             $stmt->execute();
+            $stmt->closeCursor();// Safely consuming the SQL operation till end
+            if (!$stmt->rowCount()) {
+                // Make test query
+                $query = 'SELECT id, name, state from project';
+                $stmt = $this->cr->prepare($query);
+                $stmt->execute();
+            }
+        } catch(\PDOException $e ) {
+            echo "ERROR $e";
+            exit;
         }
     }
 
