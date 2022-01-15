@@ -86,7 +86,7 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
 //        $query = file_get_contents(__DIR__ . "/$db_dump_file");
-        $query = "
+    $query = <<<QUERY
         USE `heroku_cd7e75e609cc863`
         CREATE TABLE IF NOT EXISTS `project` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
     PRIMARY KEY (`bucket`),
     KEY `expires_at` (`expires_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-        ";
+QUERY;
         try {
             $stmt = $this->cr->prepare($query);
             $stmt->execute();
