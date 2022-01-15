@@ -8,7 +8,7 @@ APPLICATION CONSTANTS
 ====================
 */
 const ENV = 'PRODUCTION';
-const DEVELOPMENT = ENV === 'DEVELOPMENT';
+const DEVELOPMENT = ENV === 'PRODUCTION';
 if (DEVELOPMENT) {
     // Set Errors level
     ini_set('display_errors', '1');

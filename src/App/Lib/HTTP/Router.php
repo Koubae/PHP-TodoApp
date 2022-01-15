@@ -105,10 +105,6 @@ class Router
             $userLogginAttempt = $_SERVER['REQUEST_URI'] === '/login?submit' && $method === 'POST';
             $userSignUpAttempt = $_SERVER['REQUEST_URI'] === '/signup?submit' && $method === 'POST';
 
-            echo var_dump($method);
-            echo var_dump($_SERVER['REQUEST_URI']);
-            echo var_dump($userLogginAttempt);
-            echo var_dump($userSignUpAttempt);
             if (!$logged && !$userLogginAttempt && !$userSignUpAttempt) {
                 return self::redirectLogin();
             }
