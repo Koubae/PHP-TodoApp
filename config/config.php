@@ -7,9 +7,9 @@ namespace Config;
 APPLICATION CONSTANTS
 ====================
 */
-const ENV = 'PRODUCTION';
+const ENV = 'DEVELOPMENT';
 const DEVELOPMENT = ENV === 'DEVELOPMENT';
-if (!DEVELOPMENT) {
+if (DEVELOPMENT) {
     // Set Errors level
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -33,7 +33,8 @@ const CONFIG = [
         ],
         'public' => [
             'name' => 'TodoApp',
-            'url' => 'cryptic-plains-98119.herokuapp.com',
+            'url' => 'localhost',
+//            'url' => 'cryptic-plains-98119.herokuapp.com',
 
         ],
     ],
@@ -53,13 +54,13 @@ const CONFIG = [
     'credentials' => [
         'private' => [
             'db' => [
-//                'development' => [
-//                    'db_host' => 'localhost',
-//                    'db_name' => 'my_db',
-//                    'db_user' => 'root',
-//                    'db_pass' => '',
-//                    'db_dump_file' => 'todo_list_dump_dev.sql',
-//                ],
+                'development' => [
+                    'db_host' => 'localhost',
+                    'db_name' => 'my_db',
+                    'db_user' => 'root',
+                    'db_pass' => '',
+                    'db_dump_file' => 'todo_list_dump.sql',
+                ],
 //                'production' => [
 //                    'db_host' => 'localhost',
 //                    'db_name' => 'todo_list',
@@ -88,8 +89,8 @@ const CONFIG = [
 ====================
 */
 // PUBLIC
-//define("WEB_HOST" , 'http://' . CONFIG['main']['public']['url'] . ':8000');
-define("WEB_HOST" , 'https://' . CONFIG['main']['public']['url']);
+define("WEB_HOST" , 'http://' . CONFIG['main']['public']['url'] . ':8000');
+//define("WEB_HOST" , 'https://' . CONFIG['main']['public']['url']);
 define('ASSETS', CONFIG['paths']['public']['assets']);
 define('ASSETS_STYLE', ASSETS . '/style/');
 define('ASSETS_JS', ASSETS . '/js/');
