@@ -71,8 +71,6 @@ final class Config
 
             // Config Is a multi-dimenstion array containing each 'private' & 'public' arrays of settings
             foreach($setting as $permission => $values) {
-                echo($permission);
-                echo($values);
                 if ($permission === 'private') {
                     foreach($values as $key => $value) {
                         self::setPrivate($key, $value);

@@ -10,10 +10,11 @@ $config = Config::getClass(); // pass the class in app and not the instance, lea
 $config::initConfig();
 
 $logs = $config::getPrivate('logs');
-echo "HELLOOOO <br/>";
-echo var_dump($logs);
-exit;
+
 $logger = Logger::getInstance(key: 'app', log_path:$logs);
+echo "HELLOOOO <br/>";
+echo var_dump($logger);
+exit;
 $app = new App(appConfig: $config, logger: $logger);
 $app->run();
 
