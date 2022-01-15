@@ -12,10 +12,10 @@ $config::initConfig();
 $logs = $config::getPrivate('logs');
 
 $logger = Logger::getInstance(key: 'app', log_path:$logs);
-echo "HELLOOOO <br/>";
-echo var_dump($logger);
-exit;
 $app = new App(appConfig: $config, logger: $logger);
+echo "HELLOOOO <br/>";
+echo var_dump($app);
+exit;
 $app->run();
 
 
