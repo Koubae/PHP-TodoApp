@@ -13,10 +13,10 @@ $logs = $config::getPrivate('logs');
 
 $logger = Logger::getInstance(key: 'app', log_path:$logs);
 $app = new App(appConfig: $config, logger: $logger);
+
+$app->run();
 echo "HELLOOOO <br/>";
 echo var_dump($app);
 exit;
-$app->run();
-
 
 require 'app.php';
