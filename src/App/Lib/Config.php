@@ -6,7 +6,9 @@ require_once __DIR__ . '../../../app_config.php';
 use const App\BASE_DIR;
 require_once BASE_DIR . '/config/config.php';
 use const Config\CONFIG;
-
+echo var_dump(CONFIG);
+echo var_dump(CONFIG);
+echo var_dump(CONFIG);
 final class Config
 {
 
