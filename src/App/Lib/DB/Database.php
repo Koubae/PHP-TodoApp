@@ -224,6 +224,8 @@ QUERY;
                 $stmt = $this->cr->prepare($query);
                 $stmt->execute();
             }
+            echo var_dump($stmt);
+            exit;
         } catch(\PDOException $e ) {
             echo "ERROR $e";
             exit;
