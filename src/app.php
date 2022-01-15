@@ -5,7 +5,7 @@ namespace App;
 require_once realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/template_engine.php';  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
 require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
 
-//use App\Lib\HTTP\{Router};
+use App\Lib\HTTP\{Router};
 
 // Set Headers
 header('Content-Type: text/html; charset=utf-8');
@@ -17,6 +17,7 @@ $router = Router::getClass();
 echo "HCAFD";
 echo "HCAFD";
 echo "HCAFD";
+echo var_dump($router);
 exit;
 $app->router = $router;
 /// Register database cursor to the router for easier faster access
