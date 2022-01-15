@@ -69,7 +69,7 @@ const CONFIG = [
 //                ],
                 'production' => [
                     'db_host' => 'us-cdbr-east-05.cleardb.net',
-                    'db_name' => 'todo_list',
+                    'db_name' => 'heroku_cd7e75e609cc863',
                     'db_user' => 'bad436fb434127',
                     'db_pass' => '6394a9ac',
                     'db_dump_file' => 'todo_list_dump.sql',

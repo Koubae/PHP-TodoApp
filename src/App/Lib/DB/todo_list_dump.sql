@@ -13,8 +13,8 @@ Sample SQL Dump file
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`todo_list` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `todo_list`;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`heroku_cd7e75e609cc863` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `heroku_cd7e75e609cc863`;
 
 --  Destroy any previously created tables in order to start with a fresh database
 DROP TABLE IF EXISTS `project`;

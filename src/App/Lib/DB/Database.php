@@ -40,9 +40,6 @@ final class Database
             $dsn = "mysql:host=" . $db_host . ";charset=utf8";
         }
 
-        echo "HELLOOOO <br/>";
-        echo var_dump($conn);
-        exit;
 
         $cr = self::_connect($dsn, $db_user, $db_pass);
         if (!$cr) {
@@ -50,6 +47,9 @@ final class Database
         }
         $conn->cr = $cr;
         $conn->_init_db($db_dump_file);
+        echo "HELLOOOO <br/>";
+        echo var_dump($conn);
+        exit;
 
         return $conn;
     }
