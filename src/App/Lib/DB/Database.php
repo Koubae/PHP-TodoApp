@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 
     UNIQUE (name, user_id)
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `task` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `task` (
     FOREIGN KEY (project_id) REFERENCES `project`(id) ON DELETE CASCADE,
     FOREIGN KEY (project_default_id) REFERENCES `project`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `todo_list` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
     UNIQUE unique_user_id_task_id_name (user_id, task_id, name),
     FOREIGN KEY (task_id) REFERENCES `task`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 
 -- delight-im/PHP-Auth https://github.com/delight-im/PHP-Auth/blob/master/Database/MySQL.sql
@@ -309,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `users_confirmations` (
     UNIQUE KEY `selector` (`selector`),
     KEY `email_expires` (`email`,`expires`),
     KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -333,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `users_remembered` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
   KEY `user` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `users_resets` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
     KEY `user_expires` (`user`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `users_throttling` (
     `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
     `expires_at` int(10) unsigned NOT NULL,
     PRIMARY KEY (`bucket`),
     KEY `expires_at` (`expires_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
 
 
 ";
@@ -390,21 +390,13 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 //            $this->cr->query($fullq);
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
-
             $this->cr->query($users);
-//
             $this->cr->query($users_confirmations);
-
             $this->cr->query($user_rem);
-//
             $this->cr->query($users_resets);
-//
             $this->cr->query($t);
-
             $this->cr->query($todo);
-
             $this->cr->query($task);
-
             $this->cr->query($project);
             echo "dfsfd";
             exit;
