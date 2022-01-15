@@ -31,9 +31,7 @@ final class Database
             'db_dump_file' => $db_dump_file
             ) = $confConnection;
 
-        echo "HELLOOOO <br/>";
-        echo var_dump($confConnection);
-        exit;
+
 
         $conn = new Database($db_host, $db_name);
         if (self::CONN_DB_NAME) {
@@ -41,6 +39,10 @@ final class Database
         } else {
             $dsn = "mysql:host=" . $db_host . ";charset=utf8";
         }
+
+        echo "HELLOOOO <br/>";
+        echo var_dump($conn);
+        exit;
 
         $cr = self::_connect($dsn, $db_user, $db_pass);
         if (!$cr) {
