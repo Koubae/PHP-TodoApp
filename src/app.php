@@ -14,6 +14,10 @@ header('Content-Type: text/html; charset=utf-8');
 /* @var Lib\App $app Application */
 /// Register App Router instance
 $router = Router::getClass();
+echo "HCAFD";
+echo "HCAFD";
+echo "HCAFD";
+exit;
 $app->router = $router;
 /// Register database cursor to the router for easier faster access
 Router::$cr = $app->cr;
@@ -24,10 +28,7 @@ $path = realpath(dirname(__DIR__)) .  '/resources/routes/routes.php';
 
 
 
-echo "HCAFD";
-echo "HCAFD";
-echo "HCAFD";
-exit;
+
 
 require $path;
 
