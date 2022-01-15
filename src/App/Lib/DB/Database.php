@@ -86,6 +86,8 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
         $query = file_get_contents(__DIR__ . "/$db_dump_file");
+        echo "$db_dump_file";
+        exit;
         $stmt = $this->cr->prepare($query);
         $stmt->execute();
         $stmt->closeCursor();// Safely consuming the SQL operation till end
