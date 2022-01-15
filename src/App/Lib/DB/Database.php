@@ -299,6 +299,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `email` varchar(10)  NOT NULL,
 
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB ;
 
 CREATE TABLE IF NOT EXISTS `users_confirmations` (
