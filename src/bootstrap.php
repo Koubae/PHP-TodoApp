@@ -8,10 +8,11 @@ use App\Lib\{Config, Logger, App};
 
 $config = Config::getClass(); // pass the class in app and not the instance, learn how.
 $config::initConfig();
-echo "HELLOOOO <br/>";
-echo var_dump($config);
-exit;
+
 $logs = $config::getPrivate('logs');
+echo "HELLOOOO <br/>";
+echo var_dump($logs);
+exit;
 $logger = Logger::getInstance(key: 'app', log_path:$logs);
 $app = new App(appConfig: $config, logger: $logger);
 $app->run();
