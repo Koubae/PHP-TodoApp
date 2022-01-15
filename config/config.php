@@ -93,7 +93,7 @@ define("WEB_HOST" , 'https://' . CONFIG['main']['public']['url']);
 define('ASSETS', CONFIG['paths']['public']['assets']);
 define('ASSETS_STYLE', ASSETS . '/style/');
 define('ASSETS_JS', ASSETS . '/js/');
-define('VIEWS', CONFIG['paths']['public']['views']);
+define('VIEWS', realpath(dirname(__DIR__)) . '/resources/views');
 
 // PRIVATE
 define('LIB_PATH', CONFIG['paths']['private']['lib']);
