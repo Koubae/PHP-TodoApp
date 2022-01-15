@@ -40,7 +40,7 @@ const CONFIG = [
 
     'paths' => [
         'private' => [
-            'lib' => APP_DIR . '/App/Lib',
+            'lib' => APP_DIR . '/lib',
             'logs' => ROOT_DIR . '/logs',
         ],
         'public' => [
