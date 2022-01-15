@@ -40,7 +40,7 @@ const CONFIG = [
 
     'paths' => [
         'private' => [
-            'lib' => APP_DIR . '/lib',
+            'lib' => APP_DIR . '/App/Lib',
             'logs' => ROOT_DIR . '/logs',
         ],
         'public' => [
@@ -60,6 +60,13 @@ const CONFIG = [
                     'db_pass' => '',
                     'db_dump_file' => 'todo_list_dump_dev.sql',
                 ],
+//                'production' => [
+//                    'db_host' => 'localhost',
+//                    'db_name' => 'todo_list',
+//                    'db_user' => 'root',
+//                    'db_pass' => '',
+//                    'db_dump_file' => 'todo_list_dump.sql',
+//                ],
                 'production' => [
                     'db_host' => 'us-cdbr-east-05.cleardb.net',
                     'db_name' => 'todo_list',

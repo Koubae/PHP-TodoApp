@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
 namespace App\Lib;
+require realpath(dirname(__DIR__)) . '/Lib/DB/Database.php';
 use App\Lib\DB\Database;
 //use const Config\DEVELOPMENT;
-
 class App
 {
     public $config;

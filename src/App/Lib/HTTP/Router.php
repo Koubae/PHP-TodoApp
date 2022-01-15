@@ -3,7 +3,9 @@
 namespace App\Lib\HTTP;
 //use  \App\Lib\DB\Database;
 //https://stackoverflow.com/a/11723153/13903942
-use JetBrains\PhpStorm\Pure;
+require realpath(dirname(__DIR__)) . '/HTTP/Request.php';
+require realpath(dirname(__DIR__)) . '/HTTP/Response.php';
+
 
 class Router
 {

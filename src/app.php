@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
 namespace App;
-require_once LIB_PATH . "/http/template_engine.php";  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
-
+require_once LIB_PATH . "/HTTP/template_engine.php";  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
+require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
 
 use App\Lib\HTTP\{Router};
 
