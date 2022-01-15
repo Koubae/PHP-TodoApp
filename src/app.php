@@ -17,6 +17,9 @@ $app->router = $router;
 Router::$cr = $app->cr;
 Router::$db = $app->database;
 Router::authSet($app->auth());
-require $app->config->getPublic('resources') . '/routes/routes.php';
+$path = $app->config->getPublic('resources') . '/routes/routes.php';
+echo "HCAFD";
+echo $path;
+require $path;
 
 
