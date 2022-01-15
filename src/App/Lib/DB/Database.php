@@ -86,12 +86,10 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
 //        $query = file_get_contents(__DIR__ . "/$db_dump_file");
-
-    $query = "    
-    CREATE TABLE IF NOT EXISTS `project` (
+        $project = "CREATE TABLE IF NOT EXISTS `project` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    datetime_create DATETIME DEFAULT NULL,
-    datetime_write DATETIME DEFAULT NULL,
+    datetime_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    datetime_write TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     name VARCHAR(50) NOT NULL,
 
     description TEXT NULL,
@@ -107,12 +105,12 @@ final class Database
 
     UNIQUE (name, user_id)
 
-)  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
-CREATE TABLE IF NOT EXISTS `task` (
+        $task = "CREATE TABLE IF NOT EXISTS `task` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    datetime_create DATETIME DEFAULT NULL,
-    datetime_write DATETIME DEFAULT NULL ,
+    datetime_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    datetime_write TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     name VARCHAR(50) NOT NULL,
     project_id MEDIUMINT UNSIGNED NULL,
     project_default_id MEDIUMINT UNSIGNED NOT NULL DEFAULT 1,
@@ -131,12 +129,13 @@ CREATE TABLE IF NOT EXISTS `task` (
     FOREIGN KEY (project_id) REFERENCES `project`(id) ON DELETE CASCADE,
     FOREIGN KEY (project_default_id) REFERENCES `project`(id) ON DELETE CASCADE
 
-)  DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci";
 
+        $todo = "
 CREATE TABLE IF NOT EXISTS `todo_list` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    datetime_create DATETIME DEFAULT NULL,
-    datetime_write DATETIME DEFAULT NULL,
+    datetime_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    datetime_write TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     name VARCHAR(50) NOT NULL,
     task_id MEDIUMINT UNSIGNED NOT NULL,
 
@@ -149,12 +148,9 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
     UNIQUE unique_user_id_task_id_name (user_id, task_id, name),
     FOREIGN KEY (task_id) REFERENCES `task`(id) ON DELETE CASCADE
 
-)  DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci";
 
-
--- delight-im/PHP-Auth https://github.com/delight-im/PHP-Auth/blob/master/Database/MySQL.sql
---  ================= < USER TABLES > =================
-CREATE TABLE IF NOT EXISTS `users` (
+   $users = "CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `email` varchar(249) COLLATE utf8mb4_unicode_ci NOT NULL,
     `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -168,9 +164,9 @@ CREATE TABLE IF NOT EXISTS `users` (
     `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`)
-)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-CREATE TABLE IF NOT EXISTS `users_confirmations` (
+$users_confirmations = "CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `user_id` int(10) unsigned NOT NULL,
     `email` varchar(249) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -181,9 +177,9 @@ CREATE TABLE IF NOT EXISTS `users_confirmations` (
     UNIQUE KEY `selector` (`selector`),
     KEY `email_expires` (`email`,`expires`),
     KEY `user_id` (`user_id`)
-) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-CREATE TABLE IF NOT EXISTS `users_remembered` (
+$user_rem = "CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL,
   `selector` varchar(24) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -192,9 +188,9 @@ CREATE TABLE IF NOT EXISTS `users_remembered` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
   KEY `user` (`user`)
-)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-CREATE TABLE IF NOT EXISTS `users_resets` (
+$users_resets = "CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     `user` int(10) unsigned NOT NULL,
     `selector` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -203,23 +199,46 @@ CREATE TABLE IF NOT EXISTS `users_resets` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
     KEY `user_expires` (`user`,`expires`)
-)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-CREATE TABLE IF NOT EXISTS `users_throttling` (
+$t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
     `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
     `tokens` float unsigned NOT NULL,
     `replenished_at` int(10) unsigned NOT NULL,
     `expires_at` int(10) unsigned NOT NULL,
     PRIMARY KEY (`bucket`),
     KEY `expires_at` (`expires_at`)
-)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-";
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+
 
         try {
-            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+//            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
-            $stmt = $this->cr->prepare($query);
+
+            $stmt = $this->cr->prepare($project);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($task);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($todo);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($users);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($users_confirmations);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($user_rem);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($users_resets);
+            $stmt->execute();
+
+            $stmt = $this->cr->prepare($t);
             $stmt->execute();
             echo "dfsfd";
             exit;
