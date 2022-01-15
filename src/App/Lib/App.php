@@ -38,13 +38,7 @@ class App
     private function _bootDatabase()
     {
         $databaseConfig = $this->config::getPrivate("db");
-        echo "HELLOOOO <br/>";
-        echo var_dump($this->development);
-        exit;
         $database = Database::connect($this->development, $databaseConfig);
-        echo "HELLOOOO <br/>";
-        echo var_dump($database);
-        exit;
         $cr = $database->getCursor();
         $this->database = $database;
         $this->cr = $cr;

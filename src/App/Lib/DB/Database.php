@@ -31,6 +31,10 @@ final class Database
             'db_dump_file' => $db_dump_file
             ) = $confConnection;
 
+        echo "HELLOOOO <br/>";
+        echo var_dump($confConnection);
+        exit;
+
         $conn = new Database($db_host, $db_name);
         if (self::CONN_DB_NAME) {
             $dsn = "mysql:host=" . $db_host . ";dbname=" . $db_name . ";charset=utf8";
