@@ -21,6 +21,11 @@ function render($contentFile, $variables = array())
 //    ob_start();
     require_once(VIEWS . "/header.php");
     require_once(VIEWS . "/navbar.php");
+    echo "Ciao";
+    echo "Ciao";
+    echo "Ciao";
+    echo var_dump($variables); echo  '<br/>';
+    exit;
 
     echo '<div id="layout">';
 
