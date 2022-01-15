@@ -227,9 +227,9 @@ $set = "
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
 ";
         try {
-//            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
-            $this->cr->query($set);
-
+            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+//            $this->cr->query($set);
+//            $this->cr->query($set2);
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
 
@@ -257,7 +257,7 @@ $set = "
             $stmt = $this->cr->prepare($project);
             $stmt->execute();
 
-            $this->cr->query($set2);
+
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
