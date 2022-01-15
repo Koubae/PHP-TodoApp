@@ -81,6 +81,10 @@ class Router
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') !== 0) {
             return;
         }
+        echo var_dump($route); echo  '<br/>';
+        echo var_dump($_SERVER['REQUEST_URI']); echo  '<br/>';
+        exit;
+
         return self::_route($route, $callback, "GET");
     }
 
