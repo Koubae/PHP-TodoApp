@@ -215,16 +215,9 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 QUERY;
         try {
-            $stmt = $this->cr->prepare($query);
-            $stmt->execute();
-            $stmt->closeCursor();// Safely consuming the SQL operation till end
-            if (!$stmt->rowCount()) {
-                // Make test query
-                $query = 'SELECT id, name, state from project';
-                $stmt = $this->cr->prepare($query);
-                $stmt->execute();
-            }
-            echo var_dump($stmt);
+            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+            $this->cr->exec($query);
+            echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
             echo "ERROR $e";
