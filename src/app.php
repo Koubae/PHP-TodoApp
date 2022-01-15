@@ -1,9 +1,12 @@
 <?php declare(strict_types=1);
-echo "HCAFD";
-exit;
+
 
 //namespace App;
 //require_once LIB_PATH . "/HTTP/template_engine.php";  // fixme: shouldn't this be loaded by the psr-4 composer autoloder?!?!?!
+$path = LIB_PATH . "/HTTP/template_engine.php";
+echo "HCAFD";
+echo $path;
+exit;
 //require realpath(dirname(__DIR__)) . '/src/App/Lib/HTTP/Router.php';
 //
 //use App\Lib\HTTP\{Router};
