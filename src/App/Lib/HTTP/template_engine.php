@@ -23,6 +23,7 @@ function render($contentFile, $variables = array())
     echo "Ciao";
     echo "Ciao";
     echo var_dump(VIEWS); echo  '<br/>';
+    echo var_dump(WEB_HOST); echo  '<br/>';
     exit;
     require_once(VIEWS . "/header.php");
     require_once(VIEWS . "/navbar.php");
