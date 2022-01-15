@@ -86,7 +86,8 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
 //        $query = file_get_contents(__DIR__ . "/$db_dump_file");
-    $this->cr->query("USE $this->db_name");
+        $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
+        $this->cr->query("use " . $this->db_name);
     $query = "    
     CREATE TABLE IF NOT EXISTS `project` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
