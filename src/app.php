@@ -17,10 +17,10 @@ $app->router = $router;
 Router::$cr = $app->cr;
 Router::$db = $app->database;
 Router::authSet($app->auth());
-$path = $app->config->getPublic('resources') . '/routes/routes.php';
 echo "HCAFD";
-echo $path;
 exit;
+$path = $app->config->getPublic('resources') . '/routes/routes.php';
+
 require $path;
 
 
