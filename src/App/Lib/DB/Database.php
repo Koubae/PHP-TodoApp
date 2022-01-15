@@ -107,7 +107,7 @@ final class Database
 
     UNIQUE (name, user_id)
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+)  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `task` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `task` (
     FOREIGN KEY (project_id) REFERENCES `project`(id) ON DELETE CASCADE,
     FOREIGN KEY (project_default_id) REFERENCES `project`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+)  DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `todo_list` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
     UNIQUE unique_user_id_task_id_name (user_id, task_id, name),
     FOREIGN KEY (task_id) REFERENCES `task`(id) ON DELETE CASCADE
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
+)  DEFAULT CHARSET=utf8 COLLATE utf8_unicode_ci;
 
 
 -- delight-im/PHP-Auth https://github.com/delight-im/PHP-Auth/blob/master/Database/MySQL.sql
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `force_logout` mediumint(7) unsigned NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `users_confirmations` (
     UNIQUE KEY `selector` (`selector`),
     KEY `email_expires` (`email`,`expires`),
     KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `users_remembered` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
   KEY `user` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `users_resets` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
     KEY `user_expires` (`user`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `users_throttling` (
     `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
     `expires_at` int(10) unsigned NOT NULL,
     PRIMARY KEY (`bucket`),
     KEY `expires_at` (`expires_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ";
 
         try {
