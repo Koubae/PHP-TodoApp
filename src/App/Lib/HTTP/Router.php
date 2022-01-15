@@ -211,7 +211,7 @@ class Router
 
     public static function redirectLogin()
     {
-//        if ($_SERVER['REQUEST_URI'] !== '/login') echo self::redirect(slug: 'login'); // Makes sure that it redirect to the login URI
+        if ($_SERVER['REQUEST_URI'] !== '/login') echo self::redirect(slug: 'login'); // Makes sure that it redirect to the login URI
         return render("login.php", ["logged" => self::logged()]);
     }
 
