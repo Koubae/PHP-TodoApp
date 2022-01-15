@@ -1,19 +1,7 @@
-DirectoryIndex index.php
-# enable apache rewrite engine
-RewriteEngine on
-Options -Indexes
 Options -MultiViews
-# set your rewrite base
-# Edit this in your init method too if you script lives in a subfolder
-RewriteBase public/
 
-# Deliver the folder or file directly if it exists on the server
-RewriteCond %{REQUEST_FILENAME} !-f
+RewriteEngine On
+#RewriteBase /path/to/app
 RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteCond %{HTTPS} on
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# Push every request to index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
-
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
