@@ -210,10 +210,26 @@ $t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
     KEY `expires_at` (`expires_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
+$set = "
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+";
+        $set2 = "
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
+";
         try {
 //            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+            $this->cr->query($set);
+
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
 
@@ -241,7 +257,7 @@ $t = "CREATE TABLE IF NOT EXISTS `users_throttling` (
             $stmt = $this->cr->prepare($project);
             $stmt->execute();
 
-
+            $this->cr->query($set2);
             echo "dfsfd";
             exit;
         } catch(\PDOException $e ) {
