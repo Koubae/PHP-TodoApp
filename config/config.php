@@ -53,13 +53,13 @@ const CONFIG = [
     'credentials' => [
         'private' => [
             'db' => [
-                'development' => [
-                    'db_host' => 'localhost',
-                    'db_name' => 'my_db',
-                    'db_user' => 'root',
-                    'db_pass' => '',
-                    'db_dump_file' => 'todo_list_dump_dev.sql',
-                ],
+//                'development' => [
+//                    'db_host' => 'localhost',
+//                    'db_name' => 'my_db',
+//                    'db_user' => 'root',
+//                    'db_pass' => '',
+//                    'db_dump_file' => 'todo_list_dump_dev.sql',
+//                ],
 //                'production' => [
 //                    'db_host' => 'localhost',
 //                    'db_name' => 'todo_list',
