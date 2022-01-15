@@ -68,8 +68,12 @@ final class Config
     public static function initConfig(): void
     {
         foreach(CONFIG as $config => $setting) {
+            echo "1";
+            echo($setting);
             // Config Is a multi-dimenstion array containing each 'private' & 'public' arrays of settings
             foreach($setting as $permission => $values) {
+                echo($permission);
+                echo($values);
                 if ($permission === 'private') {
                     foreach($values as $key => $value) {
                         self::setPrivate($key, $value);
