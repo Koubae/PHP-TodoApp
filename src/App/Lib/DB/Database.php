@@ -214,8 +214,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
     KEY `expires_at` (`expires_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ";
-        echo "dfsfd";
-        exit;
+
         try {
             $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
             $this->cr->query("use " . $this->db_name);
