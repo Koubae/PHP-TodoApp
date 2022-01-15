@@ -207,6 +207,7 @@ class Router
     public static function errorNotFound(int | string | null $statusCode = 404)
     {
         http_response_code($statusCode);
+        echo "$statusCode" . "HERE";
         return render("errors/404.php", ["error_code" => $statusCode]);
     }
 
