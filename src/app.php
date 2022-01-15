@@ -20,17 +20,6 @@ $app->router = $router;
 Router::$cr = $app->cr;
 Router::$db = $app->database;
 Router::authSet($app->auth());
-
-$path = realpath(dirname(__DIR__)) .  '/resources/routes/routes.php';
-
-echo "HCAFD";
-echo "HCAFD";
-echo "HCAFD";
-echo var_dump($path);
-exit;
-
-
-
-require $path;
+require realpath(dirname(__DIR__)) .  '/resources/routes/routes.php';
 
 
