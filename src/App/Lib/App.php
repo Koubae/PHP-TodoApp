@@ -31,9 +31,6 @@ class App
     {
         $this->logger::enableSystemLogs(request_log: true);
         $this->_bootDatabase();
-        echo "HELLOOOO <br/>";
-        echo var_dump($this);
-        exit;
         $this->auth = new \Delight\Auth\Auth($this->cr);
 
     }
@@ -41,6 +38,9 @@ class App
     private function _bootDatabase()
     {
         $databaseConfig = $this->config::getPrivate("db");
+        echo "HELLOOOO <br/>";
+        echo var_dump($databaseConfig);
+        exit;
         $database = Database::connect($this->development, $databaseConfig);
         $cr = $database->getCursor();
         $this->database = $database;
