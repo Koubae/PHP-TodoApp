@@ -213,7 +213,6 @@ TRUNCATE TABLE project;
 TRUNCATE TABLE task;
 TRUNCATE TABLE todo_list;
 
-INSERT INTO `users` (`id`, `email`, `password`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`)
 
 
 -- insert data
