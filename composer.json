@@ -23,8 +23,7 @@
            "cd ./public  && php -S localhost:8000"
        ],
        "compile" : [
-           "Composer\\Config::disableProcessTimeout",
-           "cd ./public  && php -S localhost:8000"
+           "cd ./public"
        ],
 
        "some_tests": [
