@@ -19,13 +19,14 @@ function render($contentFile, $variables = array())
     }
     // TODO: make some const
 //    ob_start();
+    echo "Ciao";
+    echo "Ciao";
+    echo "Ciao";
+    echo var_dump(VIEWS); echo  '<br/>';
+    exit;
     require_once(VIEWS . "/header.php");
     require_once(VIEWS . "/navbar.php");
-    echo "Ciao";
-    echo "Ciao";
-    echo "Ciao";
-    echo var_dump($variables); echo  '<br/>';
-    exit;
+
 
     echo '<div id="layout">';
 
