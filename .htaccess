@@ -1,2 +1,2 @@
-RewriteEngine On
-RewriteRule Off
+#Disable rewriting
+RewriteEngine Off
