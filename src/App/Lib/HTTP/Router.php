@@ -229,7 +229,6 @@ class Router
         if (!str_starts_with($slug, '/')) {
             $slug = '/' . $slug;
         }
-        return "$root$slug";
         return <<<REDIRECT
         <script type="text/javascript">
             window.location.href = '$root$slug' ;
