@@ -34,7 +34,7 @@ const CONFIG = [
         'public' => [
             'name' => 'TodoApp',
 //            'url' => 'localhost',
-            'url' => 'cryptic-plains-98119.herokuapp.com',
+            'url' => '',
 
         ],
     ],
@@ -69,10 +69,10 @@ const CONFIG = [
 //                    'db_dump_file' => 'todo_list_dump.sql',
 //                ],
                 'production' => [
-                    'db_host' => 'us-cdbr-east-05.cleardb.net',
-                    'db_name' => 'heroku_cd7e75e609cc863',
-                    'db_user' => 'bad436fb434127',
-                    'db_pass' => '6394a9ac',
+                    'db_host' => '',
+                    'db_name' => '',
+                    'db_user' => '',
+                    'db_pass' => '',
                     'db_dump_file' => 'todo_list_dump.sql',
                 ],
 
