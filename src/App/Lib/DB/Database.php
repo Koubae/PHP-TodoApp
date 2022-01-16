@@ -369,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 //            $this->cr->query($todo);
             exit;
         } catch(\PDOException $e ) {
-            echo "ERROR ";
+            echo "ERROR $e";
             exit;
         }
     }
