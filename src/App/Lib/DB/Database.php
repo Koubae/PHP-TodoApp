@@ -86,7 +86,7 @@ final class Database
     private function _create_db(string $db_dump_file): void
     {
         // FIXME :)
-//        $query = file_get_contents(__DIR__ . "/$db_dump_file");
+
         $project = "CREATE TABLE IF NOT EXISTS `project` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     datetime_create TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -351,19 +351,22 @@ CREATE TABLE IF NOT EXISTS `users_throttling` (
 
 ";
         try {
+            $query = file_get_contents(__DIR__ . "/$db_dump_file");
             $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+            $this->cr->query($query);
 
-            $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
-            $this->cr->query("use " . $this->db_name);
-            $this->cr->query("TRUNCATE TABLE `users`");
-            $this->cr->query($users);
-            $this->cr->query($users_confirmations);
-            $this->cr->query($user_rem);
-            $this->cr->query($users_resets);
-            $this->cr->query($t);
-            $this->cr->query($project);
-            $this->cr->query($task);
-            $this->cr->query($todo);
+//            $this->cr->setAttribute(\PDO::ATTR_EMULATE_PREPARES, 0);
+//            $this->cr->query("create database IF NOT EXISTS `heroku_cd7e75e609cc863`");
+//            $this->cr->query("use " . $this->db_name);
+//            $this->cr->query("TRUNCATE TABLE `users`");
+//            $this->cr->query($users);
+//            $this->cr->query($users_confirmations);
+//            $this->cr->query($user_rem);
+//            $this->cr->query($users_resets);
+//            $this->cr->query($t);
+//            $this->cr->query($project);
+//            $this->cr->query($task);
+//            $this->cr->query($todo);
             exit;
         } catch(\PDOException $e ) {
             echo "ERROR ";

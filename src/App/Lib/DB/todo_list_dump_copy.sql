@@ -17,6 +17,9 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`heroku_cd7e75e609cc863` /*!40100 DEFAUL
 USE `heroku_cd7e75e609cc863`;
 
 --  Destroy any previously created tables in order to start with a fresh database
+DROP TABLE IF EXISTS `project`;
+DROP TABLE IF EXISTS `task`;
+DROP TABLE IF EXISTS `todo_list`;
 
 CREATE TABLE IF NOT EXISTS `project` (
     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -86,9 +89,9 @@ CREATE TABLE IF NOT EXISTS `todo_list` (
 --  ================= < USER TABLES > =================
 CREATE TABLE IF NOT EXISTS `users` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `email` varchar(249)  NOT NULL,
-    `password` varchar(255)  NOT NULL,
-    `username` varchar(100)  DEFAULT NULL,
+    `email` varchar(249) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `username` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `status` tinyint(2) unsigned NOT NULL DEFAULT '0',
     `verified` tinyint(1) unsigned NOT NULL DEFAULT '0',
     `resettable` tinyint(1) unsigned NOT NULL DEFAULT '1',
@@ -103,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `users_confirmations` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `user_id` int(10) unsigned NOT NULL,
-    `email` varchar(249) NOT NULL,
-    `selector` varchar(16)NOT NULL,
-    `token` varchar(255)  NOT NULL,
+    `email` varchar(249) COLLATE utf8mb4_unicode_ci NOT NULL,
+    `selector` varchar(16) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
     `expires` int(10) unsigned NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
@@ -116,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `users_confirmations` (
 CREATE TABLE IF NOT EXISTS `users_remembered` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL,
-  `selector` varchar(24)  NOT NULL,
-  `token` varchar(255)  NOT NULL,
+  `selector` varchar(24) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `expires` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `selector` (`selector`),
@@ -127,8 +130,8 @@ CREATE TABLE IF NOT EXISTS `users_remembered` (
 CREATE TABLE IF NOT EXISTS `users_resets` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
     `user` int(10) unsigned NOT NULL,
-    `selector` varchar(20) NOT NULL,
-    `token` varchar(255) NOT NULL,
+    `selector` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+    `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
     `expires` int(10) unsigned NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `selector` (`selector`),
@@ -136,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `users_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `users_throttling` (
-    `bucket` varchar(44) NOT NULL,
+    `bucket` varchar(44) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
     `tokens` float unsigned NOT NULL,
     `replenished_at` int(10) unsigned NOT NULL,
     `expires_at` int(10) unsigned NOT NULL,
