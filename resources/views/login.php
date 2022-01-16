@@ -9,20 +9,23 @@ $success = $success ??= null;
 
 <div class="row fadeInDown justify-content-md-center">
     <?php if($success) {?>
-        <?php foreach($success as $ok): ?>
-            <div class="alert alert-success" role="alert">
-                <?= $ok ?>
-            </div>
-        <?php endforeach;?>
+        <div class="d-flex justify-content-center mt-5 p-3">
+            <?php foreach($success as $ok): ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $ok ?>
+                </div>
+            <?php endforeach;?>
+        </div>
 
     <?php } ?>
     <?php if($errors) {?>
+        <div class="d-flex justify-content-center mt-5 p-3">
             <?php foreach($errors as $error): ?>
                 <div class="alert alert-danger" role="alert">
                     <?= $error ?>
                 </div>
             <?php endforeach;?>
-
+        </div>
     <?php } ?>
 
 

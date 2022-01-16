@@ -113,10 +113,8 @@ class Router
         } catch( \Exception $e) {
             try {
                 $errorCode = (int) $e->getCode();
-                echo "$e" . "HERE";
             } catch (\TypeError $type_err) {
                 $errorCode = 404;
-                echo "$type_err" . "HERE $type_err";
             }
             return self::errorNotFound(statusCode: $errorCode);
         }

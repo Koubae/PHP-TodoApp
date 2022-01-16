@@ -17,8 +17,7 @@ function render($contentFile, $variables = array())
             }
         }
     }
-    // TODO: make some const
-    ob_start();
+//    ob_start();
 
     require_once(VIEWS . "/header.php");
     require_once(VIEWS . "/navbar.php");
@@ -42,7 +41,7 @@ function render($contentFile, $variables = array())
     echo "</div>\n";
     require_once(VIEWS . "/footer.php");
     echo "</body> </html>";
-    ob_end_flush();
+//    ob_end_flush();
     exit;
 }
 

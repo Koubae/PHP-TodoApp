@@ -148,8 +148,26 @@ $index = function(Request $req, Response $res)
         }
     }
 
+
     $param = $req->params;
-    $project_selected_id = (int) $param['project'] ??= $default_project_id;
+    // did the user select a project from the project tab?
+    $project_selected_id = (int) $param['project'] ??= null;
+    if ($project_selected_id) {
+        // Then Update the Selected project in session
+        $_SESSION['project_selected'] = $project_selected_id;
+    }
+
+    // Take now the Project selected in session
+    $project_selected_session = $_SESSION['project_selected'] ??= null;
+    if (!$project_selected_session) { // if project not in sesssion Determine if we have a selected project
+        // Then we add the default one, most probably the session was newly created
+        $_SESSION['project_selected'] = $default_project_id;
+        $project_selected_id = $default_project;
+    } else {
+        // Otherwise get the session's project
+        $project_selected_id = $project_selected_session;
+    }
+
 
     // Tasks
     $queryPre = 'SELECT 
@@ -195,7 +213,8 @@ $index = function(Request $req, Response $res)
     $stmt = $cr->prepare($query);
     $stmt->execute($db_params);
     $tasks = $stmt->fetchAll();
-    if (!$tasks && !$default_project_selected) { // Make sure to it the default project
+    $redirectToDefaultIfNoProject = false;
+    if (!$tasks && !$default_project_selected && $redirectToDefaultIfNoProject) { // Make sure to it the default project
         $query = $queryPre . ' WHERE task.project_default_id = (?) ORDER BY task.id DESC';
         $db_params = [$default_project_id];
         $project_id_in_view = $default_project_id;
@@ -237,6 +256,13 @@ $taskCreate = function(Request $req, Response $res)
     $stmt->execute([$user_id]);
     $defaultProjectID = $stmt->fetchColumn();
 
+    $project_selected_session = $_SESSION['project_selected'] ??= null;
+    // Take now the Project selected in session
+    if (!$project_selected_session) {
+        $project_id = $defaultProjectID;
+    } else {
+        $project_id = $project_selected_session;
+    }
 
     $today = date('Y-m-d');
     $nextWeek = date('Y-m-d', strtotime('+7 day', strtotime($today)));
@@ -247,13 +273,14 @@ $taskCreate = function(Request $req, Response $res)
         'date_end' => $nextWeek,
         'user_id' => $user_id,
         'project_default_id' => $defaultProjectID,
+        'project_id' => $project_id,
     ];
 
     try {
         // Actual update
         $query = "INSERT INTO `task` 
-                    (`name`, `state`, `date_start`, `date_end`, `user_id`, `project_default_id`) 
-                VALUES (:name, :state, :date_start, :date_end, :user_id, :project_default_id)";
+                    (`name`, `state`, `date_start`, `date_end`, `user_id`, `project_default_id`, `project_id`) 
+                VALUES (:name, :state, :date_start, :date_end, :user_id, :project_default_id, :project_id)";
         $stmt = $cr->prepare($query);
         $stmt->execute($data);
     } catch (\PDOException $e) {

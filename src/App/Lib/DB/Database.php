@@ -140,7 +140,7 @@ final class Database
             `tokens` float unsigned NOT NULL,
             `replenished_at` int(10) unsigned NOT NULL,
             `expires_at` int(10) unsigned NOT NULL,
-            PRIMARY KEY (`bucket`),
+            PRIMARY KEY (`buc ket`),
             KEY `expires_at` (`expires_at`)
         ) ENGINE=InnoDB";
 
@@ -224,7 +224,7 @@ final class Database
 
             exit;
         } catch(\PDOException $e ) {
-            echo "ERROR $e";
+            echo "ERROR WHILE CREATING DATABASE :(";
             exit;
         }
     }

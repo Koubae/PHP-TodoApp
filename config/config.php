@@ -9,7 +9,7 @@ APPLICATION CONSTANTS
 */
 const ENV = 'PRODUCTION';
 const DEVELOPMENT = ENV === 'DEVELOPMENT';
-if (!DEVELOPMENT) {
+if (DEVELOPMENT) {
     // Set Errors level
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
@@ -33,6 +33,7 @@ const CONFIG = [
         ],
         'public' => [
             'name' => 'TodoApp',
+//            'url' => 'localhost',
             'url' => 'cryptic-plains-98119.herokuapp.com',
 
         ],
